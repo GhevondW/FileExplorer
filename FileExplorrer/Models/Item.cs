@@ -8,14 +8,14 @@ namespace FileExplorrer.Models
 {
     public class Item : BindingHelper
     {
-        private string _name;
-        public string Name
+        private string _absolutePath;
+        public string AbsolutePath
         {
-            get { return _name; }
+            get { return _absolutePath; }
             set
             {
-                _name = value;
-                OnPropertyChanged(nameof(Name));
+                _absolutePath = value;
+                OnPropertyChanged(nameof(AbsolutePath));
             }
         }
         private string _imagePath;
@@ -28,17 +28,47 @@ namespace FileExplorrer.Models
                 OnPropertyChanged(nameof(ImagePath));
             }
         }
+        public bool IsDirectory { get; set; }
 
-        public Item(string name,string imagePath)
+        private string _resolution;
+        public string Resolution
         {
-            Name = name;
-            ImagePath = imagePath;
+            get { return _resolution; }
+            set
+            {
+                _resolution = value;
+                OnPropertyChanged(nameof(Resolution));
+            }
         }
 
+        private string _name;
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = value;
+                OnPropertyChanged(nameof(Name));
+            }
+        }
+        
         public Item()
         {
-
+            Name = "Root";
         }
+
+        public Item(string ap,string ip,bool isDirectory)
+        {
+            AbsolutePath = ap;
+            ImagePath = ip;
+            IsDirectory = isDirectory;
+            Resolution = ap.Substring(ap.LastIndexOf('.')+1);
+            Name = ap.Substring(ap.LastIndexOf('\\') + 1);
+        }
+        
 
     }
 }

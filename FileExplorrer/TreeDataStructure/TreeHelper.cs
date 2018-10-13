@@ -7,46 +7,60 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace FileExplorrer.TreeDataStructure
 {
     public static class TreeHelper
     {
 
-        public static TreeNode<string> Root { get; set; } = new TreeNode<string>("PC",null);
-        public static TreeNode<string> CurrentPostition { get; set; }
+        public static TreeNode<Item> Root { get; set; } = new TreeNode<Item>(new Item(),null);
+        public static TreeNode<Item> CurrentPostition { get; set; }
 
         static TreeHelper()
         {
             foreach (var item in Directory.GetLogicalDrives())
             {
-                Root.Add(item.ToString());
+                Item temp = new Item(item, "/Images/hard-drive.png", true);
+                string[] arr = item.Split('\\');
+                temp.Name = arr[arr.Length - 2];
+                Root.Add(temp);
             }
             CurrentPostition = Root;
         }
 
-        public static void ChangePositionTo(string path)
+        public static ObservableCollection<Item> ChangePositionTo(Item goTo)
         {
-            TreeNode<string> node = CurrentPostition.GetChildByValue(path);
+            TreeNode<Item> node = CurrentPostition.GetChildByValue(goTo);
             if (node != null)
             {
                 if (node.Children.Count == 0)
                 {
-                    foreach (var item in Directory.GetDirectories(node.Value))
+                    try
                     {
-                        node.Add(item);
+                        foreach (var item in Directory.GetDirectories(goTo.AbsolutePath))
+                        {
+                            node.Add(new Item(item, "/Images/folder_closed.png", true));
+                        }
+                        foreach (var item in Directory.GetFiles(goTo.AbsolutePath))
+                        {
+                            node.Add(new Item(item, "/Images/exe_file.png", false));
+                        }
                     }
+                    catch { }
                 }
                 CurrentPostition = node;
-            }          
+            }
+            return GetItems();
         }
 
-        public static void BackToAboveFolder()
+        public static ObservableCollection<Item> BackToAboveFolder()
         {
             if (CurrentPostition.Parent != null)
             {
                 CurrentPostition = CurrentPostition.Parent;
             }
+            return GetItems();
         }
 
         public static ObservableCollection<Item> GetItems()
@@ -55,7 +69,7 @@ namespace FileExplorrer.TreeDataStructure
 
             foreach (var item in CurrentPostition.Children)
             {
-                temp.Add(new Item(item.Value,@"/Images/exe_file.png"));
+                temp.Add(item.Value);
             }
 
             return temp;

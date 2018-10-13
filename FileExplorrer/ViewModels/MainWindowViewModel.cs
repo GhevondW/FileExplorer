@@ -1,4 +1,5 @@
-﻿using FileExplorrer.Models;
+﻿using FileExplorerCmd.TreeDataStructure;
+using FileExplorrer.Models;
 using FileExplorrer.TreeDataStructure;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,16 @@ namespace FileExplorrer.ViewModels
     class MainWindowViewModel:BindingHelper
     {
 
-        public ObservableCollection<Item> CurrentItems { get; set; } = new ObservableCollection<Item>();
+        private ObservableCollection<Item> _currentItems = new ObservableCollection<Item>();
+        public ObservableCollection<Item> CurrentItems
+        {
+            get { return _currentItems; }
+            set
+            {
+                _currentItems = value;
+                OnPropertyChanged(nameof(CurrentItems));
+            }
+        }
         private Item _selectedItem;
         public Item SelectedItem
         {
@@ -29,8 +39,7 @@ namespace FileExplorrer.ViewModels
 
         public MainWindowViewModel()
         {
-            CurrentItems = TreeHelper.GetItems();
-            
+            CurrentItems = TreeHelper.GetItems();           
         }
 
         private RelayCommand _openCommand;
@@ -39,11 +48,9 @@ namespace FileExplorrer.ViewModels
             get
             {
                 return _openCommand ?? (_openCommand = new RelayCommand(obj => {
-                    
-                    MessageBox.Show("Hello Open");
-                    SelectedItem = null;
+                    CurrentItems = TreeHelper.ChangePositionTo(SelectedItem);
                 },
-                obj => { if (SelectedItem == null) { return false; } return true; }
+                obj => { if (SelectedItem == null || !SelectedItem.IsDirectory) { return false; } return true; }
                 ));
             }
         }
@@ -54,8 +61,8 @@ namespace FileExplorrer.ViewModels
             get
             {
                 return _backCommand ?? (_backCommand = new RelayCommand(obj => {
-                    MessageBox.Show("Hello back");
-                    SelectedItem = null;
+                    TreeHelper.BackToAboveFolder();
+                    CurrentItems = TreeHelper.GetItems();
                 }));
             }
         }
