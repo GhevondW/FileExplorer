@@ -80,55 +80,58 @@ namespace FileExplorrer.Models
         
         private void SetImagePath()
         {
-            if (Resolution == "pdf")
+            if (Resolution == "pdf" || Resolution == "PDF")
             {
                 ImagePath = @"/Images/pdf.png";
             }
-            else if (Resolution == "txt")
+            else if (Resolution == "txt" || Resolution == "TXT")
             {
                 ImagePath = @"/Images/text.png";
             }
-            else if (Resolution == "png" || Resolution == "jpg" || Resolution == "gif" || Resolution == "jpeg")
+            else if (Resolution == "png" || Resolution == "jpg" || Resolution == "gif" || Resolution == "jpeg" ||
+                Resolution == "PNG" || Resolution == "JPG" || Resolution == "GIF" || Resolution == "JPEG")
             {
                 ImagePath = @"/Images/image.png";
             }
-            else if (Resolution == "docx")
+            else if (Resolution == "doc" || Resolution == "DOC" || Resolution == "DOCX" || Resolution == "docx")
             {
                 ImagePath = @"/Images/word.png";
             }
-            else if (Resolution == "exe")
+            else if (Resolution == "exe" || Resolution == "EXE")
             {
                 ImagePath = @"/Images/exe_file.png";
             }
-            else if (Resolution == "mp3" || Resolution == "3gp" || Resolution == "m4p")
+            else if (Resolution == "mp3" || Resolution == "3gp" || Resolution == "m4p" ||
+                Resolution == "MP3" || Resolution == "3GP" || Resolution == "M4P")
             {
                 ImagePath = @"/Images/music.png";
             }
-            else if (Resolution == "rar" || Resolution == "zip")
+            else if (Resolution == "rar" || Resolution == "zip" ||
+                Resolution == "RAR" || Resolution == "ZIP")
             {
                 ImagePath = @"/Images/zip.png";
             }
-            else if (Resolution == "dll")
+            else if (Resolution == "dll" || Resolution == "DLL")
             {
                 ImagePath = @"/Images/dll.png";
             }
-            else if (Resolution == "sys")
+            else if (Resolution == "sys" || Resolution == "SYS")
             {
                 ImagePath = @"/Images/sys.png";
             }
-            else if (Resolution == "css")
+            else if (Resolution == "css" || Resolution == "CSS")
             {
                 ImagePath = @"/Images/css.png";
             }
-            else if (Resolution == "json")
+            else if (Resolution == "json" || Resolution == "JSON")
             {
                 ImagePath = @"/Images/json-file.png";
             }
-            else if (Resolution == "js")
+            else if (Resolution == "js" || Resolution == "JS")
             {
                 ImagePath = @"/Images/javascript.png";
             }
-            else if (Resolution == "xml")
+            else if (Resolution == "xml" || Resolution == "XML")
             {
                 ImagePath = @"/Images/xml.png";
             }
