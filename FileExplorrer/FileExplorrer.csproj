@@ -137,8 +137,38 @@
   <ItemGroup>
     <Resource Include="Images\exe_file.png" />
     <Resource Include="Images\folder_closed.png" />
-    <Resource Include="Images\folder_opened.png" />
     <Resource Include="Images\hard-drive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\text.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\music.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\word.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\zip.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pdf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\dll.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\sys.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\css.png" />
+    <Resource Include="Images\javascript.png" />
+    <Resource Include="Images\json-file.png" />
+    <Resource Include="Images\search.png" />
+    <Resource Include="Images\xml.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

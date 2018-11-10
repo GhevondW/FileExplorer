@@ -48,9 +48,10 @@ namespace FileExplorrer.ViewModels
             get
             {
                 return _openCommand ?? (_openCommand = new RelayCommand(obj => {
-                    CurrentItems = TreeHelper.ChangePositionTo(SelectedItem);
+                    CurrentItems = TreeHelper.ChangePositionTo(SelectedItem);                    
                 },
-                obj => { if (SelectedItem == null || !SelectedItem.IsDirectory) { return false; } return true; }
+                obj => {
+                    if (SelectedItem == null || !SelectedItem.IsDirectory) { return false; } return true; }
                 ));
             }
         }

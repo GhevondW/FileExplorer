@@ -23,7 +23,7 @@ namespace FileExplorrer.TreeDataStructure
             {
                 Item temp = new Item(item, "/Images/hard-drive.png", true);
                 string[] arr = item.Split('\\');
-                temp.Name = arr[arr.Length - 2];
+                temp.Name = string.Format("Local Disk({0})", arr[arr.Length - 2]);
                 Root.Add(temp);
             }
             CurrentPostition = Root;
@@ -44,7 +44,7 @@ namespace FileExplorrer.TreeDataStructure
                         }
                         foreach (var item in Directory.GetFiles(goTo.AbsolutePath))
                         {
-                            node.Add(new Item(item, "/Images/exe_file.png", false));
+                            node.Add(new Item(item/*, "/Images/exe_file.png"*/, false));
                         }
                     }
                     catch { }

@@ -68,7 +68,75 @@ namespace FileExplorrer.Models
             Resolution = ap.Substring(ap.LastIndexOf('.')+1);
             Name = ap.Substring(ap.LastIndexOf('\\') + 1);
         }
+
+        public Item(string ap,bool isDirectory)
+        {
+            AbsolutePath = ap;
+            IsDirectory = isDirectory;
+            Resolution = ap.Substring(ap.LastIndexOf('.') + 1);
+            Name = ap.Substring(ap.LastIndexOf('\\') + 1);
+            SetImagePath();
+        }
         
+        private void SetImagePath()
+        {
+            if (Resolution == "pdf")
+            {
+                ImagePath = @"/Images/pdf.png";
+            }
+            else if (Resolution == "txt")
+            {
+                ImagePath = @"/Images/text.png";
+            }
+            else if (Resolution == "png" || Resolution == "jpg" || Resolution == "gif" || Resolution == "jpeg")
+            {
+                ImagePath = @"/Images/image.png";
+            }
+            else if (Resolution == "docx")
+            {
+                ImagePath = @"/Images/word.png";
+            }
+            else if (Resolution == "exe")
+            {
+                ImagePath = @"/Images/exe_file.png";
+            }
+            else if (Resolution == "mp3" || Resolution == "3gp" || Resolution == "m4p")
+            {
+                ImagePath = @"/Images/music.png";
+            }
+            else if (Resolution == "rar" || Resolution == "zip")
+            {
+                ImagePath = @"/Images/zip.png";
+            }
+            else if (Resolution == "dll")
+            {
+                ImagePath = @"/Images/dll.png";
+            }
+            else if (Resolution == "sys")
+            {
+                ImagePath = @"/Images/sys.png";
+            }
+            else if (Resolution == "css")
+            {
+                ImagePath = @"/Images/css.png";
+            }
+            else if (Resolution == "json")
+            {
+                ImagePath = @"/Images/json-file.png";
+            }
+            else if (Resolution == "js")
+            {
+                ImagePath = @"/Images/javascript.png";
+            }
+            else if (Resolution == "xml")
+            {
+                ImagePath = @"/Images/xml.png";
+            }
+            else
+            {
+                ImagePath = @"/Images/search.png";
+            }
+        }
 
     }
 }

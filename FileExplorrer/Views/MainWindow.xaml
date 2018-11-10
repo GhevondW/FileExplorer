@@ -6,15 +6,15 @@
         xmlns:local="clr-namespace:FileExplorrer"
         xmlns:UserControls="clr-namespace:FileExplorrer.UserControls"
         mc:Ignorable="d"
-        
-        Title="MainWindow" Height="450" Width="800">
+        Background="#373737"
+        Title="MainWindow" Height="600" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Grid Margin="5"  Background="#eeeeee">
+        <Grid Margin="10"  Background="#1F1F1F">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition/>
@@ -27,15 +27,20 @@
 
         </Grid>
 
-        <ListBox Grid.Row="1" Background="#eeeeee" Margin="5" 
+        <ListView Grid.Row="1" Background="#1F1F1F" Margin="10" 
                  ItemsSource="{Binding CurrentItems, UpdateSourceTrigger=PropertyChanged}" 
                  SelectedItem="{Binding SelectedItem, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}">
-            <ListBox.ItemTemplate>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
                 <DataTemplate>
-                    <UserControls:Item Width="650" Height="70"/>
+                    <UserControls:Item Width="730" Height="70"/>
                 </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+            </ListView.ItemTemplate>
+        </ListView>
         
         
     </Grid>
