@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,10 +49,21 @@ namespace FileExplorrer.ViewModels
             get
             {
                 return _openCommand ?? (_openCommand = new RelayCommand(obj => {
-                    CurrentItems = TreeHelper.ChangePositionTo(SelectedItem);                    
+                    if (SelectedItem.IsDirectory)
+                    {
+                        CurrentItems = TreeHelper.ChangePositionTo(SelectedItem);
+                    }
+                    else
+                    {
+                        try
+                        {
+                            Process.Start(SelectedItem.AbsolutePath);
+                        }
+                        catch { }
+                    }
                 },
                 obj => {
-                    if (SelectedItem == null || !SelectedItem.IsDirectory) { return false; } return true; }
+                    if (SelectedItem == null /*|| !SelectedItem.IsDirectory*/) { return false; } return true; }
                 ));
             }
         }
