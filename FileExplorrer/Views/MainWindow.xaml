@@ -10,7 +10,7 @@
         Title="MainWindow" Height="600" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="70"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
@@ -22,8 +22,24 @@
             </Grid.ColumnDefinitions>
 
             <Button Content="Back" Command="{Binding BackCommand}" Margin="5"/>
-
             <Button Grid.Column="2" Content="Open" Command="{Binding OpenCommand}" Margin="5"/>
+
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox Grid.Column="1" Margin="10" Text="{Binding FolderName, Mode=TwoWay , UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Grid.Column="2" Margin="10" Command="{Binding CreateFolderCommand , UpdateSourceTrigger=PropertyChanged}"
+                        Content="Create"/>
+                <Button Grid.Column="3" Margin="10" Command="{Binding DeleteFolderCommand , UpdateSourceTrigger=PropertyChanged}"
+                        Content="Delete"/>
+
+            </Grid>
 
         </Grid>
 

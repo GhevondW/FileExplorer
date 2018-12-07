@@ -63,6 +63,26 @@ namespace FileExplorrer.TreeDataStructure
             return GetItems();
         }
 
+        public static ObservableCollection<Item> UpdateData()
+        {
+            var node = CurrentPostition;
+            node.Children = new List<TreeNode<Item>>();
+            try
+            {
+                foreach (var item in Directory.GetDirectories(CurrentPostition.Value.AbsolutePath))
+                {
+                    node.Add(new Item(item, "/Images/folder_closed.png", true));
+                }
+                foreach (var item in Directory.GetFiles(CurrentPostition.Value.AbsolutePath))
+                {
+                    node.Add(new Item(item/*, "/Images/exe_file.png"*/, false));
+                }
+            }
+            catch { }
+            CurrentPostition = node;
+            return GetItems();
+        }
+
         public static ObservableCollection<Item> GetItems()
         {
             ObservableCollection<Item> temp = new ObservableCollection<Item>();

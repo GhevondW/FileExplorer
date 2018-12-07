@@ -11,7 +11,7 @@ namespace FileExplorerCmd.TreeDataStructure
     {
         public T Value { get; private set; }
         public TreeNode<T> Parent { get; private set; }
-        public List<TreeNode<T>> Children { get; private set; }
+        public List<TreeNode<T>> Children { get; set; }
 
         public TreeNode(T value,TreeNode<T> parent)
         {
